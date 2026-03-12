@@ -11,6 +11,7 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
+# Charge les parametres Django avant de creer l application WSGI.
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'exam_system.settings')
 
 application = get_wsgi_application()

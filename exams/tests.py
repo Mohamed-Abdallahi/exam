@@ -4,8 +4,10 @@ from django.urls import reverse
 from .models import Exam, Registration, Result, Student
 
 
+# Tests fonctionnels de la page d accueil etudiant.
 class StudentRecordsViewTests(TestCase):
 	def setUp(self):
+		# Donnees de test: 1 etudiant, 2 examens, inscriptions et resultats.
 		self.student = Student.objects.create(
 			firstname="Ali",
 			lastname="Hassan",
@@ -19,6 +21,7 @@ class StudentRecordsViewTests(TestCase):
 		Result.objects.create(student=self.student, exam=self.physics_exam, grade=91.5)
 
 	def test_home_page_displays_registrations_results_and_average(self):
+		# Verifie le rendu des donnees et le calcul de la moyenne.
 		response = self.client.get(
 			reverse("home"),
 			{"email": "ali@example.com"},
@@ -31,6 +34,7 @@ class StudentRecordsViewTests(TestCase):
 		self.assertContains(response, "90.00")
 
 	def test_home_page_shows_not_found_message(self):
+		# Verifie le message affiche quand l email n existe pas.
 		response = self.client.get(
 			reverse("home"),
 			{"email": "missing@example.com"},

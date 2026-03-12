@@ -1,19 +1,22 @@
-{% extends "exams/base.html" %} {% block title %}Systeme de gestion des
-examens{% endblock %} {% block content %}
+{% extends "exams/base.html" %}
+
+{% block title %}Systeme de gestion des examens{% endblock %}
+
+{% block content %}
+<!-- Formulaire de recherche par email -->
 <section class="card">
   <div style="padding: 1.2rem 1.2rem 0.2rem">
     <h1
       style="
         margin: 0;
         font-size: 1.9rem;
-        font-family: &quot;Space Grotesk&quot;, sans-serif;
+        font-family: 'Space Grotesk', sans-serif;
       "
     >
       Portail etudiant
     </h1>
     <p class="muted" style="margin: 0.45rem 0 1rem">
-      Saisissez votre email pour voir vos inscriptions, vos notes et votre
-      moyenne.
+      Saisissez votre email pour voir vos inscriptions, vos notes et votre moyenne.
     </p>
   </div>
 
@@ -53,18 +56,18 @@ examens{% endblock %} {% block content %}
   </div>
 </section>
 
+<!-- Message si aucun etudiant n est trouve -->
 {% if searched_email and not student %}
 <section
   class="card"
-  style="
-    margin-top: 1rem;
-    padding: 1rem 1.2rem;
-    border-left: 4px solid var(--accent);
-  "
+  style="margin-top: 1rem; padding: 1rem 1.2rem; border-left: 4px solid var(--accent)"
 >
   <p style="margin: 0">Aucun etudiant trouve pour cette adresse email.</p>
 </section>
-{% endif %} {% if student %}
+{% endif %}
+
+<!-- Resume etudiant, inscriptions et resultats -->
+{% if student %}
 <section class="card" style="margin-top: 1rem; padding: 1rem 1.2rem">
   <h2 style="margin-top: 0">Resume etudiant</h2>
   <p style="margin: 0.3rem 0">
@@ -72,11 +75,16 @@ examens{% endblock %} {% block content %}
   </p>
   <p style="margin: 0.3rem 0"><strong>Email:</strong> {{ student.email }}</p>
   <p style="margin: 0.3rem 0">
-    <strong>Moyenne:</strong> {% if average_grade %}{{
-    average_grade|floatformat:2 }}{% else %}N/A{% endif %}
+    <strong>Moyenne:</strong>
+    {% if average_grade %}
+      {{ average_grade|floatformat:2 }}
+    {% else %}
+      N/A
+    {% endif %}
   </p>
 </section>
 
+<!-- Tableau des inscriptions -->
 <section class="card" style="margin-top: 1rem">
   <div style="padding: 1rem 1.2rem 0.5rem">
     <h2 style="margin: 0">Inscriptions</h2>
@@ -101,12 +109,11 @@ examens{% endblock %} {% block content %}
     </table>
   </div>
   {% else %}
-  <p class="muted" style="padding: 0 1.2rem 1rem">
-    Aucune inscription trouvee.
-  </p>
+  <p class="muted" style="padding: 0 1.2rem 1rem">Aucune inscription trouvee.</p>
   {% endif %}
 </section>
 
+<!-- Tableau des resultats -->
 <section class="card" style="margin-top: 1rem">
   <div style="padding: 1rem 1.2rem 0.5rem">
     <h2 style="margin: 0">Resultats</h2>
@@ -136,4 +143,5 @@ examens{% endblock %} {% block content %}
   <p class="muted" style="padding: 0 1.2rem 1rem">Aucun resultat trouve.</p>
   {% endif %}
 </section>
-{% endif %} {% endblock %}
+{% endif %}
+{% endblock %}

@@ -6,6 +6,7 @@ import sys
 
 def main():
     """Run administrative tasks."""
+    # Definit le module de configuration principal du projet Django.
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'exam_system.settings')
     try:
         from django.core.management import execute_from_command_line
@@ -19,4 +20,5 @@ def main():
 
 
 if __name__ == '__main__':
+    # Point d entree pour les commandes Django (runserver, migrate, test, ...).
     main()

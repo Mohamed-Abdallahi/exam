@@ -162,6 +162,7 @@
     </style>
   </head>
   <body>
+    <!-- Barre de navigation principale -->
     <header class="navbar">
       <div class="nav-wrap">
         <a href="{% url 'home' %}" class="brand"
@@ -173,6 +174,8 @@
         </nav>
       </div>
     </header>
+
+    <!-- Zone de contenu injectee par les templates enfants -->
     <main class="page">{% block content %}{% endblock %}</main>
   </body>
 </html>
