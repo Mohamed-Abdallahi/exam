@@ -1,7 +1,4 @@
-Here is a **professional `README.md` in French** that you can put directly in your GitHub repository.
-It is written in a **clean GitHub style** so your professor can easily read it. You can just copy-paste it into a file called **README.md** in your project.
 
----
 
 # 🎓 Exam Management System
 
