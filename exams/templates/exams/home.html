@@ -1,8 +1,5 @@
-{% extends "exams/base.html" %}
-
-{% block title %}Systeme de gestion des examens{% endblock %}
-
-{% block content %}
+{% extends "exams/base.html" %} {% block title %}Systeme de gestion des
+examens{% endblock %} {% block content %}
 <!-- Formulaire de recherche par email -->
 <section class="card">
   <div style="padding: 1.2rem 1.2rem 0.2rem">
@@ -10,13 +7,14 @@
       style="
         margin: 0;
         font-size: 1.9rem;
-        font-family: 'Space Grotesk', sans-serif;
+        font-family: &quot;Space Grotesk&quot;, sans-serif;
       "
     >
       Portail etudiant
     </h1>
     <p class="muted" style="margin: 0.45rem 0 1rem">
-      Saisissez votre email pour voir vos inscriptions, vos notes et votre moyenne.
+      Saisissez votre email pour voir vos inscriptions, vos notes et votre
+      moyenne.
     </p>
   </div>
 
@@ -60,7 +58,11 @@
 {% if searched_email and not student %}
 <section
   class="card"
-  style="margin-top: 1rem; padding: 1rem 1.2rem; border-left: 4px solid var(--accent)"
+  style="
+    margin-top: 1rem;
+    padding: 1rem 1.2rem;
+    border-left: 4px solid var(--accent);
+  "
 >
   <p style="margin: 0">Aucun etudiant trouve pour cette adresse email.</p>
 </section>
@@ -76,11 +78,8 @@
   <p style="margin: 0.3rem 0"><strong>Email:</strong> {{ student.email }}</p>
   <p style="margin: 0.3rem 0">
     <strong>Moyenne:</strong>
-    {% if average_grade %}
-      {{ average_grade|floatformat:2 }}
-    {% else %}
-      N/A
-    {% endif %}
+    {% if average_grade %} {{ average_grade|floatformat:2 }} {% else %} N/A {%
+    endif %}
   </p>
 </section>
 
@@ -109,7 +108,9 @@
     </table>
   </div>
   {% else %}
-  <p class="muted" style="padding: 0 1.2rem 1rem">Aucune inscription trouvee.</p>
+  <p class="muted" style="padding: 0 1.2rem 1rem">
+    Aucune inscription trouvee.
+  </p>
   {% endif %}
 </section>
 
@@ -143,5 +144,4 @@
   <p class="muted" style="padding: 0 1.2rem 1rem">Aucun resultat trouve.</p>
   {% endif %}
 </section>
-{% endif %}
-{% endblock %}
+{% endif %} {% endblock %}
