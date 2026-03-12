@@ -1,122 +1,139 @@
-{% extends "exams/base.html" %}
-
-{% block title %}Systeme de gestion des examens{% endblock %}
-
-{% block content %}
+{% extends "exams/base.html" %} {% block title %}Systeme de gestion des
+examens{% endblock %} {% block content %}
 <section class="card">
-    <div style="padding: 1.2rem 1.2rem 0.2rem;">
-        <h1 style="margin: 0; font-size: 1.9rem; font-family: 'Space Grotesk', sans-serif;">Portail etudiant</h1>
-        <p class="muted" style="margin: 0.45rem 0 1rem;">
-            Saisissez votre email pour voir vos inscriptions, vos notes et votre moyenne.
-        </p>
-    </div>
+  <div style="padding: 1.2rem 1.2rem 0.2rem">
+    <h1
+      style="
+        margin: 0;
+        font-size: 1.9rem;
+        font-family: &quot;Space Grotesk&quot;, sans-serif;
+      "
+    >
+      Portail etudiant
+    </h1>
+    <p class="muted" style="margin: 0.45rem 0 1rem">
+      Saisissez votre email pour voir vos inscriptions, vos notes et votre
+      moyenne.
+    </p>
+  </div>
 
-    <div style="padding: 0 1.2rem 1.2rem;">
-        <form method="get" style="display: flex; gap: 0.6rem; flex-wrap: wrap;">
-            <input
-                type="email"
-                name="email"
-                value="{{ searched_email }}"
-                placeholder="student@example.com"
-                required
-                style="
-                    flex: 1;
-                    min-width: 220px;
-                    border: 1px solid var(--line);
-                    border-radius: 10px;
-                    padding: 0.75rem;
-                    font: inherit;
-                "
-            >
-            <button
-                type="submit"
-                style="
-                    border: 0;
-                    border-radius: 10px;
-                    padding: 0.75rem 1.05rem;
-                    font: inherit;
-                    font-weight: 700;
-                    color: #fff;
-                    background: linear-gradient(135deg, var(--brand), #0ea5a3);
-                    cursor: pointer;
-                "
-            >
-                Voir mes donnees
-            </button>
-        </form>
-    </div>
+  <div style="padding: 0 1.2rem 1.2rem">
+    <form method="get" style="display: flex; gap: 0.6rem; flex-wrap: wrap">
+      <input
+        type="email"
+        name="email"
+        value="{{ searched_email }}"
+        placeholder="student@example.com"
+        required
+        style="
+          flex: 1;
+          min-width: 220px;
+          border: 1px solid var(--line);
+          border-radius: 10px;
+          padding: 0.75rem;
+          font: inherit;
+        "
+      />
+      <button
+        type="submit"
+        style="
+          border: 0;
+          border-radius: 10px;
+          padding: 0.75rem 1.05rem;
+          font: inherit;
+          font-weight: 700;
+          color: #fff;
+          background: linear-gradient(135deg, var(--brand), #0ea5a3);
+          cursor: pointer;
+        "
+      >
+        Voir mes donnees
+      </button>
+    </form>
+  </div>
 </section>
 
 {% if searched_email and not student %}
-<section class="card" style="margin-top: 1rem; padding: 1rem 1.2rem; border-left: 4px solid var(--accent);">
-    <p style="margin: 0;">Aucun etudiant trouve pour cette adresse email.</p>
+<section
+  class="card"
+  style="
+    margin-top: 1rem;
+    padding: 1rem 1.2rem;
+    border-left: 4px solid var(--accent);
+  "
+>
+  <p style="margin: 0">Aucun etudiant trouve pour cette adresse email.</p>
 </section>
-{% endif %}
-
-{% if student %}
-<section class="card" style="margin-top: 1rem; padding: 1rem 1.2rem;">
-    <h2 style="margin-top: 0;">Resume etudiant</h2>
-    <p style="margin: 0.3rem 0;"><strong>Nom:</strong> {{ student.firstname }} {{ student.lastname }}</p>
-    <p style="margin: 0.3rem 0;"><strong>Email:</strong> {{ student.email }}</p>
-    <p style="margin: 0.3rem 0;"><strong>Moyenne:</strong> {% if average_grade %}{{ average_grade|floatformat:2 }}{% else %}N/A{% endif %}</p>
-</section>
-
-<section class="card" style="margin-top: 1rem;">
-    <div style="padding: 1rem 1.2rem 0.5rem;">
-        <h2 style="margin: 0;">Inscriptions</h2>
-    </div>
-    {% if registrations %}
-    <div style="overflow-x: auto;">
-        <table>
-            <thead>
-                <tr>
-                    <th>Examen</th>
-                    <th>Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for registration in registrations %}
-                <tr>
-                    <td>{{ registration.exam.title }}</td>
-                    <td>{{ registration.exam.date }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-    {% else %}
-    <p class="muted" style="padding: 0 1.2rem 1rem;">Aucune inscription trouvee.</p>
-    {% endif %}
+{% endif %} {% if student %}
+<section class="card" style="margin-top: 1rem; padding: 1rem 1.2rem">
+  <h2 style="margin-top: 0">Resume etudiant</h2>
+  <p style="margin: 0.3rem 0">
+    <strong>Nom:</strong> {{ student.firstname }} {{ student.lastname }}
+  </p>
+  <p style="margin: 0.3rem 0"><strong>Email:</strong> {{ student.email }}</p>
+  <p style="margin: 0.3rem 0">
+    <strong>Moyenne:</strong> {% if average_grade %}{{
+    average_grade|floatformat:2 }}{% else %}N/A{% endif %}
+  </p>
 </section>
 
-<section class="card" style="margin-top: 1rem;">
-    <div style="padding: 1rem 1.2rem 0.5rem;">
-        <h2 style="margin: 0;">Resultats</h2>
-    </div>
-    {% if results %}
-    <div style="overflow-x: auto;">
-        <table>
-            <thead>
-                <tr>
-                    <th>Examen</th>
-                    <th>Date</th>
-                    <th>Note</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for result in results %}
-                <tr>
-                    <td>{{ result.exam.title }}</td>
-                    <td>{{ result.exam.date }}</td>
-                    <td>{{ result.grade|floatformat:2 }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-    {% else %}
-    <p class="muted" style="padding: 0 1.2rem 1rem;">Aucun resultat trouve.</p>
-    {% endif %}
+<section class="card" style="margin-top: 1rem">
+  <div style="padding: 1rem 1.2rem 0.5rem">
+    <h2 style="margin: 0">Inscriptions</h2>
+  </div>
+  {% if registrations %}
+  <div style="overflow-x: auto">
+    <table>
+      <thead>
+        <tr>
+          <th>Examen</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for registration in registrations %}
+        <tr>
+          <td>{{ registration.exam.title }}</td>
+          <td>{{ registration.exam.date }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <p class="muted" style="padding: 0 1.2rem 1rem">
+    Aucune inscription trouvee.
+  </p>
+  {% endif %}
 </section>
-{% endif %}
-{% endblock %}
+
+<section class="card" style="margin-top: 1rem">
+  <div style="padding: 1rem 1.2rem 0.5rem">
+    <h2 style="margin: 0">Resultats</h2>
+  </div>
+  {% if results %}
+  <div style="overflow-x: auto">
+    <table>
+      <thead>
+        <tr>
+          <th>Examen</th>
+          <th>Date</th>
+          <th>Note</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for result in results %}
+        <tr>
+          <td>{{ result.exam.title }}</td>
+          <td>{{ result.exam.date }}</td>
+          <td>{{ result.grade|floatformat:2 }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <p class="muted" style="padding: 0 1.2rem 1rem">Aucun resultat trouve.</p>
+  {% endif %}
+</section>
+{% endif %} {% endblock %}
